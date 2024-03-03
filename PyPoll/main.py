@@ -73,3 +73,19 @@ with open(csvpath,'r') as csvfile:
     print(" ")
     print("-" * 25)
     print(" ")
+
+    #Print who the winner is
+    if charles_votes > diana_votes and charles_votes > raymond_votes:
+        print("Winner: Charles Casper Stockham")
+    elif diana_votes > charles_votes and diana_votes > raymond_votes:
+        print("Winner: Diana DeGette")
+    else:
+        print("Winner: Raymon Anthony Doane")
+    
+    print(" ")
+    print("-" * 25)
+    print(" ")
+
+    
+
+

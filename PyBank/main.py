@@ -12,14 +12,15 @@ csvpath = os.path.join('PyBank','budget_data.csv')
 #Define a counter for total number of rows to calculate total months
 row_count = 0
 
-#Define a sum for total profits/losses
+#Define the total value of the profit/losses
 total_profit_losses = 0
 
-#Define a variable to calculate the greatest increase
-greatest_increase = 0
-
-#Define a list with the profit/losses changes
+#Create a list to store the profit/losses changes
 profit_losses_changes = []
+
+#Define current month Profit/Losses value and previous month Profit/Losses value
+current_month_value = 0
+previous_month_value = 0
 
 #Open the CSV file
 with open(csvpath,'r') as csvfile:
@@ -33,12 +34,32 @@ with open(csvpath,'r') as csvfile:
     for row in csvreader:
         #Count the number of rows
         row_count = row_count + 1
-        #sum the values of profits and losses in each row and accumulate it in the total_profits_losses variable defined
+        
+        #Sum the values of profits and losses in each row and accumulate it in the total_profits_losses variable defined
         total_profit_losses = total_profit_losses + int(row[1])
-    
-    #Print the Total Months
-    print("Total Months: " + str(row_count))
 
-    #Print the net total amount of profits/losses
-    print("Total: " + "$" + str(total_profit_losses))
+        #From the second row with data, store the changes in profit/losses in the created list
+        if row_count != 1:
+            profit_losses_changes.append(int(row[1])-previous_month_value)
+        
+        #After the changes calculation, set the new previous value to calculate the difference in the next row
+        previous_month_value = int(row[1])
+        
+        
+            
     
+    #Print the Total Months and leave a row empty
+    print("Total Months: " + str(row_count))
+    print(" ")
+    
+    #Print the net total amount of profits/losses and leave a row empty
+    print("Total: " + "$" + str(total_profit_losses))
+    print(" ")
+    
+    #Calculate the average of the changes in profit/losses
+    average_profit_losses = sum(profit_losses_changes) / len(profit_losses_changes)
+    #Format the value to having 2 decimals
+    formatted_value = "{:.2f}".format(average_profit_losses)
+    #Print the average change and leave a row empty
+    print("Average Change: " + "$" + str(formatted_value))
+    print(" ")

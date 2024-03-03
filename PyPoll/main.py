@@ -86,6 +86,34 @@ with open(csvpath,'r') as csvfile:
     print("-" * 25)
     print(" ")
 
+    #Open the results text file in the Analysis folder and print all the results calculated above
+    with open('PyPoll/Analysis/pypoll_results.txt','w') as f:
+        print("Election Results",file=f)
+        print(" ",file=f)
+        print("-" * 25,file=f)
+        print(" ",file=f)
+
+        print("Total Votes: " + str(vote_count),file=f)
+        print(" ",file=f)
+        print("-" * 25,file=f)
+        print(" ",file=f)
+
+        print("Charles Casper Stockham: " + str(charles_votes_perc_formatted_value)+"% " + "(" +str(charles_votes)+")",file=f)
+        print(" ",file=f)
+        print("Diana DeGette: " + str(diana_votes_perc_formatted_value)+"% " + "(" +str(diana_votes)+")",file=f)
+        print(" ",file=f)
+        print("Raymon Anthony Doane: " + str(raymond_votes_perc_formatted_value)+"% " + "(" +str(raymond_votes)+")",file=f)
+        print(" ",file=f)
+        print("-" * 25,file=f)
+        print(" ",file=f)
+
+        if charles_votes > diana_votes and charles_votes > raymond_votes:
+            print("Winner: Charles Casper Stockham",file=f)
+        elif diana_votes > charles_votes and diana_votes > raymond_votes:
+            print("Winner: Diana DeGette",file=f)
+        else:
+            print("Winner: Raymon Anthony Doane",file=f)
     
-
-
+        print(" ",file=f)
+        print("-" * 25,file=f)
+        print(" ",file=f)

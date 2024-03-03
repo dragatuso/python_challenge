@@ -9,7 +9,7 @@ print("-" * 28)
 print(" ")
 
 #Set path for file
-csvpath = os.path.join('PyBank','budget_data.csv')
+csvpath = os.path.join('PyBank','Resources/budget_data.csv')
 
 #Define a counter for total number of rows to calculate total months
 row_count = 0
@@ -49,7 +49,8 @@ with open(csvpath,'r') as csvfile:
         
         #After the changes calculation, set the new previous value to calculate the difference in the next row
         previous_month_value = int(row[1])
-        
+    
+
     #Print the Total Months and leave a row empty
     print("Total Months: " + str(row_count))
     print(" ")
@@ -81,3 +82,26 @@ with open(csvpath,'r') as csvfile:
     #Print the value and leave a row empty
     print("Greatest Decrease in Profits: " + str(date_greatest_decrease) + " ($" + str(greatest_decrease) + ")")
     print(" ")
+
+    #Open the results text file in the Analysis folder and print all the results calculated above
+    with open('PyBank/Analysis/pybank_results.txt','w') as f:
+        print("Financial Analysis",file=f)
+        print(" ",file=f)
+        print("-" * 28,file=f)
+        print(" ",file=f)
+
+        print("Total Months: " + str(row_count), file=f)
+        print(" ", file=f)
+
+        print("Total: " + "$" + str(total_profit_losses), file=f)
+        print(" ", file=f)
+
+        print("Average Change: " + "$" + str(formatted_value),file=f)
+        print(" ",file=f)
+
+        print("Greatest Increase in Profits: " + str(date_greatest_increase) + " ($" + str(greatest_increase) + ")", file=f)
+        print(" ",file=f)
+
+        print("Greatest Decrease in Profits: " + str(date_greatest_decrease) + " ($" + str(greatest_decrease) + ")", file=f)
+        print(" ",file=f)
+

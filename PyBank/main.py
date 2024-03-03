@@ -9,12 +9,31 @@ print("-" * 28)
 #Set path for file
 csvpath = os.path.join('PyBank','budget_data.csv')
 
+#Define a counter for total number of rows to calculate total months
+row_count = 0
+
 #Open the CSV file
 with open(csvpath,'r') as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=',')
+    csvreader = csv.reader(csvfile)
+
+    #Loop thorugh the rows in the CSV file and count the number of rows
+    for row in csvreader:
+        row_count = row_count + 1
+    
+    #Substract one to the total number of rows to account for the columns' title
+    total_months = row_count - 1
+    
+    #Print the Total Months
+    print("Total Months: " + str(total_months))
+
+
+
+#Open the CSV file
+# with open(csvpath,'r') as csvfile:
+#     csvreader = csv.reader(csvfile, delimiter=',')
     
     #Read all rows and print them
     # for row in csvreader:
     #     print(row)
 
-    
+

@@ -17,7 +17,10 @@ vote_count = 0
 #Create a list for storing the cadidates' names
 candidates = []
 
-
+#Define values for storing the votes of each candidate
+charles_votes = 0
+diana_votes = 0
+raymond_votes = 0
 
 #Open the CSV file
 with open(csvpath,'r') as csvfile:
@@ -36,15 +39,37 @@ with open(csvpath,'r') as csvfile:
         if candidates.count(row[2]) < 1:
            candidates.append(row[2])
 
-                
-    #print(candidates)
-                
-                
+        if row[2] == "Charles Casper Stockham":
+            charles_votes = charles_votes + 1
 
+        elif row[2] == "Diana DeGette":
+            diana_votes = diana_votes + 1
 
-    
+        elif row[2] == "Raymon Anthony Doane":
+            raymond_votes = raymond_votes + 1
+
+    #Calculate the % of votes obtained by each candidate
+    charles_votes_perc=charles_votes/vote_count*100
+    diana_votes_perc=diana_votes/vote_count*100
+    raymond_votes_perc=raymond_votes/vote_count*100
+
+    #Format the % above to having 3 decimals
+    charles_votes_perc_formatted_value = "{:.3f}".format(charles_votes_perc)
+    diana_votes_perc_formatted_value = "{:.3f}".format(diana_votes_perc)
+    raymond_votes_perc_formatted_value = "{:.3f}".format(raymond_votes_perc)
+                          
     #Print total votes, the line formats and empty rows below
     print("Total Votes: " + str(vote_count))
+    print(" ")
+    print("-" * 25)
+    print(" ")
+
+    #Print votes and % received by each candidate
+    print("Charles Casper Stockham: " + str(charles_votes_perc_formatted_value)+"% " + "(" +str(charles_votes)+")")
+    print(" ")
+    print("Diana DeGette: " + str(diana_votes_perc_formatted_value)+"% " + "(" +str(diana_votes)+")")
+    print(" ")
+    print("Raymon Anthony Doane: " + str(raymond_votes_perc_formatted_value)+"% " + "(" +str(raymond_votes)+")")
     print(" ")
     print("-" * 25)
     print(" ")
